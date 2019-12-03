@@ -19,18 +19,17 @@ const getEmailRoute = (req, res) => {
   res.send(email);
 };
 
-const router = express.Router();
+// create multiple routers, one for each type of resource
+const usersRouter = express.Router();
+const emailsRouter = express.Router();
 
-router.get('/users', getUsersRoute);
-router.get('/users/:id', getUserRoute);
+usersRouter.get('/', getUsersRoute);
+usersRouter.get('/:id', getUserRoute);
 
-router.get('/emails', getEmailsRoute);
-router.get('/emails/:id', getEmailRoute);
+emailsRouter.get('/', getEmailsRoute);
+emailsRouter.get('/:id', getEmailRoute);
 
+app.use('/users', usersRouter);
+app.use('/emails', emailsRouter);
 
-// router.get('/emails/from/:sender/to/:recipient', (req, res) => {
-//   console.log(req.params);
-// });
-
-app.use(router);
 app.listen(3000);
