@@ -1,10 +1,9 @@
-const http = require('http');
 const express = require('express');
 
 const users = require('./fixtures/users');
 const emails = require('./fixtures/emails');
 
-let app = express();
+const app = express();
 
 app.use((req, res) => {
   let route = `${req.method} ${req.url}`;
@@ -18,6 +17,4 @@ app.use((req, res) => {
   }
 });
 
-let server = http.createServer(app);
-
-server.listen(3000);
+app.listen(3000);
