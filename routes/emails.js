@@ -16,6 +16,9 @@ const createEmailRoute = async (req, res) => {
   const body = await readBody(req)
   const newEmail = JSON.parse(body)
   emails.push(newEmail)
+  // conventional response after creating a new resource is `201 Created` with JSON body
+  res.status(201)
+  res.send(newEmail)
 }
 
 const emailsRouter = express.Router()
