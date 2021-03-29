@@ -12,5 +12,5 @@ See `package.json` scripts
 
 ## Notes
 
-* `npx` runs locally installed node modules 
-* `nodemon` automatically restarts the server when anything in the directory changes
+- `npx` runs locally installed node modules
+- `nodemon` automatically restarts the server when anything in the directory changes
