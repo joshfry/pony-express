@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "develop": "npx nodemon index.js",
+    "develop": "npx nodemon src/index.js",
     "test": "npx jest --watch"
   },
   "keywords": [],
