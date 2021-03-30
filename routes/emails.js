@@ -37,11 +37,22 @@ const updateEmailRoute = async (req, res) => {
   res.send(newEmail)
 }
 
+const deleteEmailRoute = (req, res) => {
+  const index = emails.findIndex(email => email.id === req.params.id)
+
+  // mutating fixtures because we don't have a db yet
+  emails.splice(index, 1)
+
+  // conventional response after deleting a resource is `204 No Content` and omit JSON body
+  res.sendStatus(204)
+}
+
 const emailsRouter = express.Router()
 
 emailsRouter.get('/', getEmailsRoute)
 emailsRouter.get('/:id', getEmailRoute)
 emailsRouter.post('/', createEmailRoute)
 emailsRouter.patch('/:id', updateEmailRoute)
+emailsRouter.delete('/:id', deleteEmailRoute)
 
 module.exports = emailsRouter
