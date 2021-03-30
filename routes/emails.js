@@ -1,6 +1,5 @@
 const express = require('express')
 const generateId = require('../lib/generate-id')
-const jsonBodyParser = require('../lib/json-body-parser')
 const { NotFoundError } = require('../lib/not-found')
 const emails = require('../fixtures/emails')
 
@@ -65,8 +64,8 @@ const emailsRouter = express.Router()
 
 emailsRouter.get('/', getEmailsRoute)
 emailsRouter.get('/:id', getEmailRoute)
-emailsRouter.post('/', jsonBodyParser, createEmailRoute)
-emailsRouter.patch('/:id', jsonBodyParser, updateEmailRoute)
+emailsRouter.post('/', express.json(), createEmailRoute)
+emailsRouter.patch('/:id', express.json(), updateEmailRoute)
 emailsRouter.delete('/:id', deleteEmailRoute)
 
 module.exports = emailsRouter
