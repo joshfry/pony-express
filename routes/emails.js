@@ -1,22 +1,7 @@
 const express = require('express')
-const readBody = require('../lib/read-body')
 const generateId = require('../lib/generate-id')
+const jsonBodyParser = require('../lib/json-body-parser')
 const emails = require('../fixtures/emails')
-
-/*
-  CREATE
-*/
-const createEmailRoute = async (req, res) => {
-  const body = await readBody(req)
-  const newEmail = { ...JSON.parse(body), id: generateId() }
-
-  // mutating fixtures because we don't have a db yet
-  emails.push(newEmail)
-
-  // conventional response after creating a new resource is `201 Created` with JSON body
-  res.status(201)
-  res.send(newEmail)
-}
 
 /*
   READ
@@ -31,12 +16,25 @@ const getEmailRoute = (req, res) => {
 }
 
 /*
+  CREATE
+*/
+const createEmailRoute = (req, res) => {
+  const newEmail = { ...req.body, id: generateId() }
+
+  // mutating fixtures because we don't have a db yet
+  emails.push(newEmail)
+
+  // conventional response after creating a new resource is `201 Created` with JSON body
+  res.status(201)
+  res.send(newEmail)
+}
+
+/*
   UPDATE
 */
-const updateEmailRoute = async (req, res) => {
-  const body = await readBody(req)
+const updateEmailRoute = (req, res) => {
   const index = emails.findIndex(email => email.id === req.params.id)
-  const newEmail = { ...emails[index], ...JSON.parse(body) }
+  const newEmail = { ...emails[index], ...req.body }
 
   // mutating fixtures because we don't have a db yet
   emails[index] = newEmail
@@ -63,10 +61,10 @@ const deleteEmailRoute = (req, res) => {
 */
 const emailsRouter = express.Router()
 
-emailsRouter.post('/', createEmailRoute)
 emailsRouter.get('/', getEmailsRoute)
 emailsRouter.get('/:id', getEmailRoute)
-emailsRouter.patch('/:id', updateEmailRoute)
+emailsRouter.post('/', jsonBodyParser, createEmailRoute)
+emailsRouter.patch('/:id', jsonBodyParser, updateEmailRoute)
 emailsRouter.delete('/:id', deleteEmailRoute)
 
 module.exports = emailsRouter
