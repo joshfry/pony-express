@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "develop": "npx nodemon src/index.js",
-    "test": "npx jest --watch"
+    "test": "npx jest",
+    "test:watch": "npx jest --watch"
   },
   "keywords": [],
   "author": "Josh Fry <joshdfry@me.com> (http://joshfry.me/)",
