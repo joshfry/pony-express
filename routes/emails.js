@@ -3,16 +3,9 @@ const readBody = require('../lib/read-body')
 const generateId = require('../lib/generate-id')
 const emails = require('../fixtures/emails')
 
-const getEmailsRoute = (req, res) => {
-  res.send(emails)
-}
-
-const getEmailRoute = (req, res) => {
-  const email = emails.find(email => email.id === req.params.id)
-  res.send(email)
-}
-
-// since `readBody` returns a promise, this will be an async function
+/*
+  CREATE
+*/
 const createEmailRoute = async (req, res) => {
   const body = await readBody(req)
   const newEmail = { ...JSON.parse(body), id: generateId() }
@@ -25,6 +18,21 @@ const createEmailRoute = async (req, res) => {
   res.send(newEmail)
 }
 
+/*
+  READ
+*/
+const getEmailsRoute = (req, res) => {
+  res.send(emails)
+}
+
+const getEmailRoute = (req, res) => {
+  const email = emails.find(email => email.id === req.params.id)
+  res.send(email)
+}
+
+/*
+  UPDATE
+*/
 const updateEmailRoute = async (req, res) => {
   const body = await readBody(req)
   const index = emails.findIndex(email => email.id === req.params.id)
@@ -37,6 +45,9 @@ const updateEmailRoute = async (req, res) => {
   res.send(newEmail)
 }
 
+/*
+  DELETE
+*/
 const deleteEmailRoute = (req, res) => {
   const index = emails.findIndex(email => email.id === req.params.id)
 
@@ -47,11 +58,14 @@ const deleteEmailRoute = (req, res) => {
   res.sendStatus(204)
 }
 
+/*
+  ROUTES
+*/
 const emailsRouter = express.Router()
 
+emailsRouter.post('/', createEmailRoute)
 emailsRouter.get('/', getEmailsRoute)
 emailsRouter.get('/:id', getEmailRoute)
-emailsRouter.post('/', createEmailRoute)
 emailsRouter.patch('/:id', updateEmailRoute)
 emailsRouter.delete('/:id', deleteEmailRoute)
 

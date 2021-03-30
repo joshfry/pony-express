@@ -1,6 +1,9 @@
 const express = require('express')
 const users = require('../fixtures/users')
 
+/*
+  READ
+*/
 const getUsersRoute = (req, res) => {
   res.send(users)
 }
@@ -10,6 +13,9 @@ const getUserRoute = (req, res) => {
   res.send(user)
 }
 
+/*
+  ROUTES
+*/
 const usersRouter = express.Router()
 
 usersRouter.get('/', getUsersRoute)
