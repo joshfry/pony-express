@@ -1,6 +1,7 @@
 const express = require('express')
 const generateId = require('../lib/generate-id')
 const jsonBodyParser = require('../lib/json-body-parser')
+const { NotFoundError } = require('../lib/not-found')
 const emails = require('../fixtures/emails')
 
 /*
@@ -12,6 +13,7 @@ const getEmailsRoute = (req, res) => {
 
 const getEmailRoute = (req, res) => {
   const email = emails.find(email => email.id === req.params.id)
+  if (!email) throw new NotFoundError()
   res.send(email)
 }
 
@@ -50,7 +52,7 @@ const deleteEmailRoute = (req, res) => {
   const index = emails.findIndex(email => email.id === req.params.id)
 
   // mutating fixtures because we don't have a db yet
-  emails.splice(index, 1)
+  if (index >= 0) emails.splice(index, 1)
 
   // conventional response after deleting a resource is `204 No Content` and omit JSON body
   res.sendStatus(204)
