@@ -1,7 +1,7 @@
 const express = require('express')
-const generateId = require('../lib/generate-id')
-const { NotFoundError } = require('../lib/not-found')
-const emails = require('../__tests__/fixtures/emails')
+const generateId = require('../../lib/generate-id')
+const { NotFoundError } = require('../../lib/not-found')
+const emails = require('../../__tests__/fixtures/emails')
 
 /*
   READ

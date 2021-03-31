@@ -1,6 +1,6 @@
 const express = require('express')
-const { NotFoundError } = require('../lib/not-found')
-const users = require('../__tests__/fixtures/users')
+const { NotFoundError } = require('../../lib/not-found')
+const users = require('../../__tests__/fixtures/users')
 
 /*
   READ
