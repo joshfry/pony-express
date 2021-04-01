@@ -1,6 +1,6 @@
 const express = require('express')
 const { NotFoundError } = require('../../lib/not-found')
-const users = require('../../__tests__/fixtures/users')
+const users = require('./users.test.fixture')
 
 /*
   READ
@@ -18,9 +18,9 @@ const getUserRoute = (req, res) => {
 /*
   ROUTES
 */
-const usersRouter = express.Router()
+const _usersRouter = express.Router()
 
-usersRouter.get('/', getUsersRoute)
-usersRouter.get('/:id', getUserRoute)
+_usersRouter.get('/', getUsersRoute)
+_usersRouter.get('/:id', getUserRoute)
 
-module.exports = usersRouter
+module.exports = _usersRouter

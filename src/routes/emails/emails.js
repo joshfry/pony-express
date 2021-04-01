@@ -1,7 +1,7 @@
 const express = require('express')
 const generateId = require('../../lib/generate-id')
 const { NotFoundError } = require('../../lib/not-found')
-const emails = require('../../__tests__/fixtures/emails')
+const emails = require('./emails.test.fixture')
 
 /*
   READ
@@ -60,12 +60,12 @@ const deleteEmailRoute = (req, res) => {
 /*
   ROUTES
 */
-const emailsRouter = express.Router()
+const _emailsRouter = express.Router()
 
-emailsRouter.get('/', getEmailsRoute)
-emailsRouter.get('/:id', getEmailRoute)
-emailsRouter.post('/', express.json(), createEmailRoute)
-emailsRouter.patch('/:id', express.json(), updateEmailRoute)
-emailsRouter.delete('/:id', deleteEmailRoute)
+_emailsRouter.get('/', getEmailsRoute)
+_emailsRouter.get('/:id', getEmailRoute)
+_emailsRouter.post('/', express.json(), createEmailRoute)
+_emailsRouter.patch('/:id', express.json(), updateEmailRoute)
+_emailsRouter.delete('/:id', deleteEmailRoute)
 
-module.exports = emailsRouter
+module.exports = _emailsRouter

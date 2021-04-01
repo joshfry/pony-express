@@ -1,7 +1,7 @@
 const app = require('../../server')
 const supertest = require('supertest')
 const request = supertest(app)
-const usersFixture = require('../../__tests__/fixtures/users.json')
+const usersFixture = require('./users.test.fixture')
 
 describe('users', () => {
   /*

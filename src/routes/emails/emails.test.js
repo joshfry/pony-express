@@ -1,7 +1,7 @@
 const app = require('../../server')
 const supertest = require('supertest')
 const request = supertest(app)
-const emailsFixture = require('../../__tests__/fixtures/emails.json')
+const emailsFixture = require('./emails.test.fixture')
 
 /*
   TODO
