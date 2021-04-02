@@ -1,15 +1,16 @@
 import express from 'express'
 import { NotFoundError } from '../../lib/not-found'
 import users from './users.test.fixture'
+import { Route } from '../types'
 
 /*
   READ
 */
-const getUsersRoute = (req, res) => {
+const getUsersRoute: Route = (req, res) => {
   res.send(users)
 }
 
-const getUserRoute = (req, res) => {
+const getUserRoute: Route = (req, res) => {
   const user = users.find(user => user.id === req.params.id)
   if (!user) throw new NotFoundError()
   res.send(user)

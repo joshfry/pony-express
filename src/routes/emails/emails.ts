@@ -2,15 +2,16 @@ import express from 'express'
 import generateId from '../../lib/generate-id'
 import { NotFoundError } from '../../lib/not-found'
 import emails from './emails.test.fixture'
+import { Route } from '../types'
 
 /*
   READ
 */
-const getEmailsRoute = (req, res) => {
+const getEmailsRoute: Route = (req, res) => {
   res.send(emails)
 }
 
-const getEmailRoute = (req, res) => {
+const getEmailRoute: Route = (req, res) => {
   const email = emails.find(email => email.id === req.params.id)
   if (!email) throw new NotFoundError()
   res.send(email)
@@ -19,7 +20,7 @@ const getEmailRoute = (req, res) => {
 /*
   CREATE
 */
-const createEmailRoute = (req, res) => {
+const createEmailRoute: Route = (req, res) => {
   const newEmail = { ...req.body, id: generateId() }
 
   // mutating fixtures because we don't have a db yet
@@ -33,7 +34,7 @@ const createEmailRoute = (req, res) => {
 /*
   UPDATE
 */
-const updateEmailRoute = (req, res) => {
+const updateEmailRoute: Route = (req, res) => {
   const index = emails.findIndex(email => email.id === req.params.id)
   const newEmail = { ...emails[index], ...req.body }
 
@@ -47,7 +48,7 @@ const updateEmailRoute = (req, res) => {
 /*
   DELETE
 */
-const deleteEmailRoute = (req, res) => {
+const deleteEmailRoute: Route = (req, res) => {
   const index = emails.findIndex(email => email.id === req.params.id)
 
   // mutating fixtures because we don't have a db yet
