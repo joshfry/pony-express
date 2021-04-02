@@ -18,4 +18,4 @@ const readBody = req =>
     })
   })
 
-module.exports = readBody
+export default readBody

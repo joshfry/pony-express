@@ -1,7 +1,8 @@
-const app = require('../../server')
-const supertest = require('supertest')
+import app from '../../server'
+import supertest from 'supertest'
+import usersFixture from './users.test.fixture'
+
 const request = supertest(app)
-const usersFixture = require('./users.test.fixture')
 
 describe('users', () => {
   /*

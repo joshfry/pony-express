@@ -1,1 +1,1 @@
-module.exports = require('./emails')
+export { default } from './emails'

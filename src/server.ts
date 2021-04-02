@@ -1,9 +1,9 @@
-const express = require('express')
-const logger = require('./lib/logger')
-const { notFoundHandler } = require('./lib/not-found')
+import express from 'express'
+import logger from './lib/logger'
+import { notFoundHandler } from './lib/not-found'
 
-const usersRouter = require('./routes/users')
-const emailsRouter = require('./routes/emails')
+import usersRouter from './routes/users'
+import emailsRouter from './routes/emails'
 
 const app = express()
 
@@ -12,4 +12,4 @@ app.use('/users', usersRouter)
 app.use('/emails', emailsRouter)
 app.use(notFoundHandler)
 
-module.exports = app
+export default app

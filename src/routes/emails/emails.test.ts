@@ -1,7 +1,8 @@
-const app = require('../../server')
-const supertest = require('supertest')
+import app from '../../server'
+import supertest from 'supertest'
+import emailsFixture from './emails.test.fixture'
+
 const request = supertest(app)
-const emailsFixture = require('./emails.test.fixture')
 
 /*
   TODO

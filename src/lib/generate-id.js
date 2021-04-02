@@ -1,5 +1,5 @@
-const crypto = require('crypto')
+import crypto from 'crypto'
 
 const generateId = () => crypto.randomBytes(8).toString('hex')
 
-module.exports = generateId
+export default generateId

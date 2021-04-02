@@ -1,4 +1,4 @@
-const readBody = require('./read-body')
+import readBody from './read-body'
 
 const jsonBodyParser = async (req, res, next) => {
   const body = await readBody(req)
@@ -6,4 +6,4 @@ const jsonBodyParser = async (req, res, next) => {
   next()
 }
 
-module.exports = jsonBodyParser
+export default jsonBodyParser
