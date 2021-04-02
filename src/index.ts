@@ -1,3 +1,3 @@
-import server from './server'
+import app from './app'
 
-server.listen(3000)
+app.listen(3000)

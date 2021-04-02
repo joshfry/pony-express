@@ -1,4 +1,4 @@
-import app from '../../server'
+import app from '../../app'
 import supertest from 'supertest'
 import usersFixture from './users.test.fixture'
 
